@@ -9,7 +9,7 @@
     max-width: 100%;
 }
 
-.corpoModalCadastro footer {
-    margin-top: 40px;
+.corpoModalCadastro form .acoes {
+    margin-top: 48px;
     text-align: center;
 }

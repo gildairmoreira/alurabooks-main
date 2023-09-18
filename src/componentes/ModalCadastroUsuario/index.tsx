@@ -1,27 +1,27 @@
-import { AbBotao, AbCampoTexto, AbModal } from 'ds-alurabooks'
-import { useState } from 'react'
-import imagemPrincipal from './assets/login.png'
-import './ModalCadastroUsuario.css'
+import { AbBotao, AbCampoTexto, AbModal } from "ds-alurabooks"
+import { useState } from "react"
 import axios from 'axios'
 
+import imagemPrincipal from './assets/login.png'
+
+import './ModalCadastroUsuario.css'
+
 interface PropsModalCadastroUsuario {
-    aberta: boolean,
+    aberta: boolean
     aoFechar: () => void
 }
 
-const ModalCadastroUsuario = ({aberta,aoFechar}: PropsModalCadastroUsuario) =>
-{
+const ModalCadastroUsuario = ({ aberta, aoFechar } : PropsModalCadastroUsuario) => {
 
-    const [ nome, setNome ] = useState('')
-    const [ email, setEmail ] = useState('')
-    const [ endereco, setEndereco ] = useState('')
-    const [ complemento, setComplemento ] = useState('')
-    const [ cep, setCep ] = useState('')
-    const [ senha, setSenha ] = useState('')
-    const [ senhaConfirmada, setSenhaConfirmada ] = useState('')
+    const [nome, setNome] = useState('')
+    const [email, setEmail] = useState('')
+    const [endereco, setEndereco] = useState('')
+    const [complemento, setComplemento] = useState('')
+    const [cep, setCep] = useState('')
+    const [senha, setSenha] = useState('')
+    const [senhaConfirmada, setSenhaConfirmada] = useState('')
 
-    const aoSubmeterFormular = (evento: React.FormEvent<HTMLFormElement>) =>
-    {
+    const aoSubmeterFormular = (evento: React.FormEvent<HTMLFormElement>) => {
         evento.preventDefault()
         const usuario = {
             nome,
@@ -33,8 +33,7 @@ const ModalCadastroUsuario = ({aberta,aoFechar}: PropsModalCadastroUsuario) =>
         }
 
         axios.post('http://localhost:8000/public/registrar', usuario)
-            .then(() =>
-            {
+            .then(() => {
                 alert('Usuário foi cadastrado com sucesso!')
                 setNome('')
                 setEmail('')
@@ -44,66 +43,65 @@ const ModalCadastroUsuario = ({aberta,aoFechar}: PropsModalCadastroUsuario) =>
                 setSenha('')
                 setSenhaConfirmada('')
                 aoFechar()
-
             })
-            .catch(() =>
-            {
+            .catch(() => {
                 alert('OPS! Alguma coisa deu errado!')
             })
     }
 
-    return (<AbModal
-        titulo="Cadastrar"
+    return (<AbModal 
+        titulo="Cadastrar" 
         aberta={aberta}
-        aoFechar={aoFechar}
+        aoFechar={aoFechar}    
     >
-        <div className='corpoModalCadastro'>
+        <section className="corpoModalCadastro">
             <figure>
-                <img src={imagemPrincipal} alt="Monitor com uma fechadura e uma pessoa com uma chave logo ao lado." />
+                <img src={imagemPrincipal} alt="Pessoa segurando uma chave na frente de uma tela de computador que está exibindo uma fechadura" />
             </figure>
             <form onSubmit={aoSubmeterFormular}>
-                <AbCampoTexto
+                <AbCampoTexto 
+                    label="Nome"
                     value={nome}
-                    label='Nome'
                     onChange={setNome}
                 />
-                <AbCampoTexto
+                <AbCampoTexto 
+                    label="E-mail"
                     value={email}
-                    label='E-mail'
                     onChange={setEmail}
+                    type="email"
                 />
-                <AbCampoTexto
+                <AbCampoTexto 
+                    label="Endereço"
                     value={endereco}
-                    label='Endereço'
                     onChange={setEndereco}
                 />
-                <AbCampoTexto
+                <AbCampoTexto 
+                    label="Complemento"
                     value={complemento}
-                    label='Complemento'
                     onChange={setComplemento}
                 />
-                <AbCampoTexto
+                <AbCampoTexto 
+                    label="CEP"
                     value={cep}
-                    label='CEP'
                     onChange={setCep}
                 />
-                <AbCampoTexto
+                <AbCampoTexto 
+                    label="Senha"
                     value={senha}
-                    label='Senha'
-                    type='password'
                     onChange={setSenha}
+                    type="password"
                 />
-                <AbCampoTexto
+                <AbCampoTexto 
+                    label="Confirmação da senha"
                     value={senhaConfirmada}
-                    label='Confirmar senha'
-                    type='password'
                     onChange={setSenhaConfirmada}
+                    type="password"
                 />
-                <footer>
-                    <AbBotao texto='Cadastrar' />
-                </footer>
+                <div className="acoes">
+                    <AbBotao texto="Cadastrar"/>
+                </div>
             </form>
-        </div>
+        </section>
     </AbModal>)
 }
 
