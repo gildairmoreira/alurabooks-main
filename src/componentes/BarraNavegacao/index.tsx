@@ -4,8 +4,15 @@ import ModalCadastroUsuario from "../ModalCadastroUsuario"
 import logo from './assets/logo.png'
 import usuario from './assets/usuario.svg'
 import './BarraNavegacao.css'
+import { useState } from "react"
+import ModalLoginUsuario from "../ModalLoginUsuario/index"
 
-const BarraNavegacao = () => {
+const BarraNavegacao = () =>
+{
+
+    const [ modalCadastroAberta, setModalCadastroAberta ] = useState(false)
+    const [ modalLoginAberta, setModalLoginAberta ] = useState(false)
+
     return (<nav className="ab-navbar">
         <h1 className="logo">
             <Link to="/">
@@ -44,17 +51,35 @@ const BarraNavegacao = () => {
                 </ul>
             </li>
         </ul>
+        
         <ul className="acoes">
             <li>
-                <BotaoNavegacao texto="Login" textoAltSrc="Icone representando um usuário" imagemSrc={usuario} />
+                <BotaoNavegacao 
+                texto="Login" 
+                textoAltSrc="Icone representando um usuário" 
+                imagemSrc={usuario} 
+                onClick={() => setModalLoginAberta(true)}
+                />
+
+                
             </li>
             <li>
                 <BotaoNavegacao
                     texto="Cadastrar-se"
                     textoAltSrc="Icone representando um usuário"
                     imagemSrc={usuario}
+                    onClick={() => setModalCadastroAberta(true)}
+                /> 
+
+                <ModalCadastroUsuario
+                    aberta={modalCadastroAberta}
+                    aoFechar={() => setModalCadastroAberta(false)}
                 />
-                <ModalCadastroUsuario />
+                
+                <ModalLoginUsuario
+                    aberta={modalLoginAberta}
+                    aoFechar={() => setModalLoginAberta(false)}
+                    aoEfetuarLogin={() => console.log('LOGIN EFETUADO')} />
             </li>
         </ul>
     </nav>)
