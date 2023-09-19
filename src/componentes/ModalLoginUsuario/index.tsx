@@ -1,10 +1,10 @@
 import { AbBotao, AbCampoTexto, AbModal } from "ds-alurabooks"
 import { useState } from "react"
+import http from "../../http"
 
 import imagemPrincipal from './assets/login.png'
 
 import './ModalLoginUsuario.css'
-import http from "../../http"
 
 interface PropsModalLoginUsuario {
     aberta: boolean
