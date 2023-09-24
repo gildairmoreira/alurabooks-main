@@ -23,7 +23,7 @@ const Livro = () => {
     if (error) {
         console.log('Alguma coisa deu errada')
         console.log(error.message)
-        return <h1>Ops! Algum erro inesperado aconteceu</h1>
+        return<h1>Ops! Algum erro inesperado aconteceu</h1>
     }
 
     if (livro === null) {

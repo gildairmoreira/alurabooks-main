@@ -7,14 +7,15 @@ import PaginaBase from "../paginas/PaginaBase"
 import Pedidos from "../paginas/Pedidos"
 
 
-const Rotas = () => {
+const Rotas = () =>
+{
   return (<Routes>
     <Route path='/' element={<PaginaBase />}>
       <Route path='/' element={<Home />} />
       <Route path='/minha-conta' element={<AreaLogada />}>
         <Route path="pedidos" element={<Pedidos />} />
       </Route>
-      <Route path="/categorias/:slug" element={<Categoria />}/>
+      <Route path="/categorias/:slug" element={<Categoria />} />
       <Route path="/livro/:slug" element={<Livro />} />
     </Route>
   </Routes>)
