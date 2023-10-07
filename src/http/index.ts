@@ -4,7 +4,7 @@ import { ICategoria } from "../interfaces/ICategoria";
 import { ILivro } from "../interfaces/ILivro";
 
 const http = axios.create({
-  baseURL: 'http://localhost:8001',
+  baseURL: 'http://localhost:8000',
   headers: {
     Accept: 'application/json',
     Content: 'application/json'
